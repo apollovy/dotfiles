@@ -1,3 +1,7 @@
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%w"
+screen -t vi
+screen -t runserver 
+screen -t py ssh py
+select 0
