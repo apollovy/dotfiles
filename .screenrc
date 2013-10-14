@@ -4,4 +4,5 @@ hardstatus string "%w"
 screen -t vi
 screen -t runserver 
 screen -t py ssh py
+screen -t PRODUCTION
 select 0
