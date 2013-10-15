@@ -1,8 +1,11 @@
 hardstatus on
 hardstatus alwayslastline
-hardstatus string "%w"
+hardstatus string "%`: %w"
 screen -t vi
 screen -t runserver 
 screen -t py ssh py
 screen -t PRODUCTION
 select 0
+# Show session name
+# http://superuser.com/questions/212392/how-to-include-screens-session-name-in-hardstatus/212520#212520
+backtick 0 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -d . -f 2'
