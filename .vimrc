@@ -19,7 +19,7 @@ let pymode_lint_checker="pylint,pyflakes,pep8,mccabe,pep257"
 map <F6>	^f(aJ
 
 " Format Redmine message
-map <F5>	kdkkJi:€khFix ldw
+map <F5>	kdkkJi:^cwFix
 
 " various
 set number
