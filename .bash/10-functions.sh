@@ -9,7 +9,7 @@ function gl {
 }
 
 function go {
-	cd $PROJECTS_ROOT/$1
-	a
+	cd $PROJECTS_ROOT/$1/`whoami`
+	activate
 	cd $SOURCE_DIR_NAME
 }
