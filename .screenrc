@@ -1,5 +1,5 @@
 sessionname $PROJECT_NAME
-log on
+deflog on
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%`: %w"
