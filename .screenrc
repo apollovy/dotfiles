@@ -1,13 +1,15 @@
+sessionname $PROJECT_NAME
+log on
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%`: %w"
 screen -t vi
-stuff "go_screen\012 vi\012"
+stuff "go $PROJECT_NAME\012 vi\012"
 screen -t runserver 
-stuff "go_screen\012 runserver\012"
+stuff "go $PROJECT_NAME\012 runserver\012"
 screen -t py ssh py
-stuff "go_screen\012"
-screen -t PRODUCTION
+stuff "go $PROJECT_NAME\012"
+screen -t PRODUCTION ssh $PROJECT_NAME.production
 select 0
 # Show session name
 # http://superuser.com/questions/212392/how-to-include-screens-session-name-in-hardstatus/212520#212520
