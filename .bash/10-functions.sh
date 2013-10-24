@@ -13,3 +13,7 @@ function go {
 	activate
 	cd $SOURCE_DIR_NAME
 }
+
+function go_screen {
+	go `echo $STY | cut -d . -f 2`
+}

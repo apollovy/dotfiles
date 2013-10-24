@@ -2,8 +2,11 @@ hardstatus on
 hardstatus alwayslastline
 hardstatus string "%`: %w"
 screen -t vi
+stuff "go_screen\012 vi\012"
 screen -t runserver 
+stuff "go_screen\012 runserver\012"
 screen -t py ssh py
+stuff "go_screen\012"
 screen -t PRODUCTION
 select 0
 # Show session name
