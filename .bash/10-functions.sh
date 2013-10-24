@@ -13,3 +13,10 @@ function go {
 	activate
 	cd $SOURCE_DIR_NAME
 }
+
+function screen {
+	echo -n Enter project name:
+	read PROJECT_NAME
+	export PROJECT_NAME=$PROJECT_NAME
+	env screen
+}
