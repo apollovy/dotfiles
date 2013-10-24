@@ -16,7 +16,7 @@ set smartcase
 let pymode_lint_checker="pylint,pyflakes,pep8,mccabe,pep257"
 
 " Format nearest opened braces in minimum 2 lines
-map <F6>	^f(aJ
+map <F6>	^f(a
 
 " Format Redmine message
 map <F5>	kdkkJi:^cwFix
