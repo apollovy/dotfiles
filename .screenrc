@@ -8,7 +8,7 @@ stuff "go $PROJECT_NAME\012 vi\012"
 screen -t runserver 
 stuff "go $PROJECT_NAME\012 runserver\012"
 screen -t py ssh py
-stuff "go $PROJECT_NAME\012"
+stuff "export PROJECT_NAME=$PROJECT_NAME; go \$PROJECT_NAME\012"
 screen -t PRODUCTION ssh $PROJECT_NAME.production
 select 0
 # Show session name
