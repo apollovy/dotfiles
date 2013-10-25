@@ -1,4 +1,3 @@
-sessionname $PROJECT_NAME
 deflog on
 hardstatus on
 hardstatus alwayslastline
