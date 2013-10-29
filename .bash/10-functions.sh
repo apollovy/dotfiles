@@ -8,8 +8,20 @@ function gl {
 	git log $@ --pretty="%d %s [%an: <%cd>] %h" --graph
 }
 
+function _get_projects_prefix {
+	echo ''
+}
+
+function _get_projects_suffix {
+	echo `whoami`
+}
+
 function go {
-	cd $PROJECTS_ROOT/$1/`whoami`
+	if [ -z $PROJECT_NAME ]
+	then
+		PROJECT_NAME=$1
+	fi
+	cd `_get_projects_prefix`/$PROJECTS_ROOT/$PROJECT_NAME/`_get_projects_suffix`
 	activate
 	cd $SOURCE_DIR_NAME
 }
