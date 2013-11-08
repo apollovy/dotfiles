@@ -69,6 +69,7 @@ function go {
 	export PROJECTS_PREFIX=`_get_projects_prefix`
 	export PROJECTS_SUFFIX=`_get_projects_suffix`
 	export PROJECT_ROOT="$PROJECTS_PREFIX/$PROJECTS_ROOT/$PROJECT_NAME/$SITE_NAME/$PROJECTS_SUFFIX/$BRANCH_NAME"
+	export PROJECT_FULL_NAME="$PROJECT_NAME"_"$SITE_NAME"_"$PROJECTS_SUFFIX"_"$BRANCH_NAME"
 	cd $PROJECT_ROOT
 	activate
 	cd $SOURCE_DIR_NAME
@@ -102,4 +103,20 @@ function make_current_dump {
 	ln -f -s $pgsql_filename $dump_root/latest.pgsql.sql
 	ln -f -s $pgsql_custom_filename $dump_root/latest.pgsql.pg_dump
 	ln -f -s $mysql_filename $dump_root/latest.mysql.sql
+}
+
+function manage_project_server {
+	sudo supervisorctl $1 $PROJECT_FULL_NAME
+}
+
+function restart_project {
+	manage_project_server restart
+}
+
+function stop_project {
+	manage_project_server stop
+}
+
+function echo_project_port {
+	grep proxy_pass /etc/nginx/sites-enabled/$PROJECT_FULL_NAME | cut -d ':' -f 3 | sed s/';'//
 }
