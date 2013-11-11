@@ -76,8 +76,13 @@ function go {
 }
 
 function work {
-	echo -n Enter project name:
-	read PROJECT_NAME
+	if [ -z $1 ]
+	then
+		echo -n Enter project name:
+		read PROJECT_NAME
+	else
+		PROJECT_NAME=$1
+	fi
 	export PROJECT_NAME=$PROJECT_NAME
 	screen -S $PROJECT_NAME
 }
