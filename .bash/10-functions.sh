@@ -70,6 +70,11 @@ function go {
 	export PROJECTS_SUFFIX=`_get_projects_suffix`
 	export PROJECT_ROOT="$PROJECTS_PREFIX/$PROJECTS_ROOT/$PROJECT_NAME/$SITE_NAME/$PROJECTS_SUFFIX/$BRANCH_NAME"
 	export PROJECT_FULL_NAME="$PROJECT_NAME"_"$SITE_NAME"_"$PROJECTS_SUFFIX"_"$BRANCH_NAME"
+
+	export DUMP_ROOT="$PROJECT_ROOT/dumps"
+	export DUMP_LATEST_MYSQL="$DUMP_ROOT/latest.mysql.sql"
+	export DUMP_LATEST_PGSQL="$DUMP_ROOT/latest.pgsql.sql"
+
 	cd $PROJECT_ROOT
 	activate
 	cd $SOURCE_DIR_NAME
@@ -93,21 +98,16 @@ function make_current_dump {
 		echo First use \`go\` command to go into a project.
 		return 1
 	fi
-	dump_root="$PROJECT_ROOT/dumps"
 	date=`date '+%F_%T'`
-	dump_dir="$dump_root/$date"
-	db_filename="$PROJECT_NAME"_"$SITE_NAME"_`whoami`_"$BRANCH_NAME"
+	dump_dir="$DUMP_ROOT/$date"
 	pgsql_filename=$dump_dir/pgsql.sql
 	pgsql_custom_filename=$dump_dir/pgsql.pg_dump
 	mysql_filename=$dump_dir/mysql.sql
-	echo $db_filename $dump_root $date $dump_dir $pgsql_filename $pgsql_custom_filename $mysql_filename
 	mkdir -p $dump_dir
-	pg_dump -O -Fp -c $db_filename > $pgsql_filename
-	pg_dump -Fc $db_filename > $pgsql_custom_filename
-	mysqldump -p $db_filename > $mysql_filename
-	ln -f -s $pgsql_filename $dump_root/latest.pgsql.sql
-	ln -f -s $pgsql_custom_filename $dump_root/latest.pgsql.pg_dump
-	ln -f -s $mysql_filename $dump_root/latest.mysql.sql
+	pg_dump -Fc $PROJECT_FULL_NAME > $pgsql_custom_filename
+	mysqldump -p $PROJECT_FULL_NAME > $mysql_filename
+	ln -f -s $pgsql_custom_filename $DUMP_LATEST_PGSQL
+	ln -f -s $mysql_filename $DUMP_LATEST_MYSQL
 }
 
 function manage_project_server {
@@ -124,4 +124,14 @@ function stop_project {
 
 function echo_project_port {
 	grep proxy_pass /etc/nginx/sites-enabled/$PROJECT_FULL_NAME | cut -d ':' -f 3 | sed s/';'//
+}
+
+function restore_latest_dump {
+	if [ -z $PROJECT_FULL_NAME ] || [ -z $DUMP_LATEST_PGSQL ]
+	then
+		echo First use \`go\` command to go into a project.
+		return 1
+	fi
+	pg_restore -d $PROJECT_FULL_NAME $DUMP_LATEST_PGSQL
+	mysql -p $PROJECT_FULL_NAME < $DUMP_LATEST_MYSQL
 }
