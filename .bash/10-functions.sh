@@ -126,12 +126,22 @@ function echo_project_port {
 	grep proxy_pass /etc/nginx/sites-enabled/$PROJECT_FULL_NAME | cut -d ':' -f 3 | sed s/';'//
 }
 
+function _restore_dump {
+	if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]
+	then
+		echo 'Usage: _restore_dump <db_name> <pg_filename> <mysql_filename>'
+		return 1
+	fi
+	pg_restore -O -c -d $1 $2
+	mysql -p $1 < $3
+}
+
+
 function restore_latest_dump {
-	if [ -z $PROJECT_FULL_NAME ] || [ -z $DUMP_LATEST_PGSQL ]
+	if [ -z $PROJECT_FULL_NAME ] || [ -z $DUMP_LATEST_PGSQL ] || [ -z $DUMP_LATEST_MYSQL ]
 	then
 		echo First use \`go\` command to go into a project.
 		return 1
 	fi
-	pg_restore -d $PROJECT_FULL_NAME $DUMP_LATEST_PGSQL
-	mysql -p $PROJECT_FULL_NAME < $DUMP_LATEST_MYSQL
+	_restore_dump $PROJECT_FULL_NAME $DUMP_LATEST_PGSQL $DUMP_LATEST_MYSQL
 }
