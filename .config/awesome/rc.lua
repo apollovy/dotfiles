@@ -77,12 +77,33 @@ layouts =
 }
 -- }}}
 
+tag_name_table = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag(tag_name_table, s, layouts[2])
+end
+-- }}}
+
+-- {{{ Tag icons
+tag_icon_path_substitution_string = os.getenv("HOME") .. "/.config/awesome/media/tags/%s.png"
+tag_mean_name_table = {
+	"talk",
+	"avangard/site",
+	"culturalforumspb/site",
+	"ilim/site",
+	"komzdrav/site",
+	"spbchannel/site",
+	"",
+	"",
+	"",
+}
+for s = 1, screen.count() do
+    for k, v in pairs(tag_name_table) do
+        awful.tag.seticon(string.format(tag_icon_path_substitution_string, tag_mean_name_table[k]), tags[s][k])
+    end
 end
 -- }}}
 
