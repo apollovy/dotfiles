@@ -44,6 +44,11 @@ terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
+-- Screensaver
+screensaver = "xscreensaver"
+screensaver_daemon = screensaver .. " -no-splash"
+screensaver_lock = screensaver .. "-command -lock"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -240,6 +245,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey, "Shift", "Control" }, "l",     function () awful.util.spawn(screensaver_lock) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
