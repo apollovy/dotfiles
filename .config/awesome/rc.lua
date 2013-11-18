@@ -49,6 +49,9 @@ screensaver = "xscreensaver"
 screensaver_daemon = screensaver .. " -no-splash"
 screensaver_lock = screensaver .. "-command -lock"
 
+-- Browser
+browser = "x-www-browser"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -246,6 +249,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     awful.key({ modkey, "Shift", "Control" }, "l",     function () awful.util.spawn(screensaver_lock) end),
+    awful.key({ modkey,           }, "b",     function () awful.util.spawn(browser) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
