@@ -2,8 +2,10 @@ deflog on
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%`: %w"
-screen -t py ssh py
+screen -t master ssh py
 stuff "export PROJECT_NAME=$PROJECT_NAME; go \$PROJECT_NAME\012"
+screen -t test ssh py
+stuff "export PROJECT_NAME=$PROJECT_NAME; go \$PROJECT_NAME site test\012"
 screen -t PRODUCTION ssh $PROJECT_NAME.production
 select 0
 # Show session name
