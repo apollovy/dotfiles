@@ -1,0 +1,3 @@
+pylint==0.28.0
+radon==0.4.3
+selenium==2.33.0

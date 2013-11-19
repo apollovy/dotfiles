@@ -52,6 +52,9 @@ screensaver_lock = screensaver .. "-command -lock"
 -- Browser
 browser = "x-www-browser"
 
+-- Mail
+mail = "thunderbird"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -96,9 +99,9 @@ tag_mean_name_table = {
 	"ilim/site",
 	"komzdrav/site",
 	"spbchannel/site",
-	"",
-	"",
-	"",
+	"default",
+	"default",
+	"default",
 }
 for s = 1, screen.count() do
     for k, v in pairs(tag_name_table) do
@@ -405,4 +408,26 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- }}}
+
+-- {{{ Autoruns
+function run_once(prg,arg_string,pname,screen)
+	if not prg then
+		do return nil end
+	end
+
+	if not pname then
+		pname = prg
+	end
+
+	if not arg_string then 
+		awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+	else
+		awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. " ".. arg_string .."' || (" .. prg .. " " .. arg_string .. ")",screen)
+	end
+end
+
+run_once("$HOME/venv/bin/supervisord -c $HOME/etc/supervisor/supervisord.conf")
+run_once(screensaver)
+run_once(mail)
 -- }}}
