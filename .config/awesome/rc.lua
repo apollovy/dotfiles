@@ -428,6 +428,6 @@ function run_once(prg,arg_string,pname,screen)
 end
 
 run_once("$HOME/venv/bin/supervisord -c $HOME/etc/supervisor/supervisord.conf")
-run_once(screensaver)
+run_once(screensaver_daemon)
 run_once(mail)
 -- }}}
