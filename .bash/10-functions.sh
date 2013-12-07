@@ -89,7 +89,7 @@ function work {
 		PROJECT_NAME=$1
 	fi
 	export PROJECT_NAME=$PROJECT_NAME
-	screen -S $PROJECT_NAME
+	screen -c ~/.screen/work.conf -S $PROJECT_NAME
 }
 
 function make_current_dump {
