@@ -145,3 +145,42 @@ function restore_latest_dump {
 	fi
 	_restore_dump $PROJECT_FULL_NAME $DUMP_LATEST_PGSQL $DUMP_LATEST_MYSQL
 }
+
+function __rsync_dir {
+	source_dir=$1
+	target_dir=$2
+	shift 2
+	rsync_keys=$@
+
+	rsync -avz -e ssh $rsync_keys "$client_name"."$project_name"."$realm_name":"$source_dir" `_get_project_root $client_name $project_name $branch_name`/$target_dir
+}
+
+function _sync_with_installation {
+	if [ -z $1 ] || [ -z $2 ] || [ -z $3 ] || [ -z $4 ] || [ -z $5 ]
+	then
+		echo 'Usage: $FUNCNAME <client_name> <project_name> <realm_name> <user_name> <branch_name>'
+		return 1
+	fi
+	
+	export client_name=$1
+	export project_name=$2
+	export realm_name=$3
+	export user_name=$4
+	export branch_name=$5
+
+	conf_file=$HOME/.rsync/$client_name/$project_name/$realm_name.conf
+	while read line
+	do
+		__rsync_dir $line
+	done < $conf_file
+
+}
+
+function sync {
+	if [ -z $PROJECT_FULL_NAME ]
+	then
+		echo First use \`go\` command to go into a project.
+		return 1
+	fi
+	_sync_with_installation $PROJECT_NAME $SITE_NAME production `whoami` $BRANCH_NAME
+}
