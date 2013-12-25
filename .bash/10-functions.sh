@@ -83,13 +83,21 @@ function go {
 function work {
 	if [ -z $1 ]
 	then
-		echo -n Enter project name:
+		echo -n 'Enter client name: '
 		read PROJECT_NAME
+		echo -n 'Enter site name: '
+		read SITE_NAME
 	else
 		PROJECT_NAME=$1
+		if [ -z $2 ]; then
+			SITE_NAME=site
+		else
+			SITE_NAME=$2
+		fi
 	fi
-	export PROJECT_NAME=$PROJECT_NAME
-	screen -c ~/.screen/work.conf -S $PROJECT_NAME
+	export PROJECT_NAME
+	export SITE_NAME
+	screen -c ~/.screen/work.conf -S "${PROJECT_NAME}.${SITE_NAME}"
 }
 
 function make_current_dump {
