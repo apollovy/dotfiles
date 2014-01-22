@@ -1,6 +1,7 @@
 *
 !/.gitignore
 !/.screenrc
+!/.screen/
 !/.bash/
 !/.ssh/config
 
