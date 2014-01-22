@@ -100,14 +100,15 @@ function make_current_dump {
 	fi
 	date=`date '+%F_%T'`
 	dump_dir="$DUMP_ROOT/$date"
-	pgsql_filename=$dump_dir/pgsql.sql
-	pgsql_custom_filename=$dump_dir/pgsql.pg_dump
-	mysql_filename=$dump_dir/mysql.sql
+	pgsql_custom_filename=pgsql.pg_dump
+	pgsql_custom_filename_absolute=$dump_dir/$pgsql_custom_filename
+	mysql_filename=mysql.sql
+	mysql_filename_absolute=$dump_dir/$mysql_filename
 	mkdir -p $dump_dir
-	pg_dump -Fc $PROJECT_FULL_NAME > $pgsql_custom_filename
-	mysqldump -p $PROJECT_FULL_NAME > $mysql_filename
-	ln -f -s $pgsql_custom_filename $DUMP_LATEST_PGSQL
-	ln -f -s $mysql_filename $DUMP_LATEST_MYSQL
+	pg_dump -Fc $PROJECT_FULL_NAME > $pgsql_custom_filename_absolute
+	mysqldump -p $PROJECT_FULL_NAME > $mysql_filename_absolute
+	ln -f -s $date/$pgsql_custom_filename $DUMP_LATEST_PGSQL
+	ln -f -s $date/$mysql_filename $DUMP_LATEST_MYSQL
 }
 
 function manage_project_server {
