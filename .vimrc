@@ -37,3 +37,7 @@ set exrc
 
 " various
 set number
+
+" Map window between tab movement
+nnoremap <C-w>tn :call MoveToNextTab()<CR>
+nnoremap <C-w>tp :call MoveToPrevTab()<CR>
