@@ -55,6 +55,8 @@ browser = "x-www-browser"
 -- Mail
 mail = "thunderbird"
 
+--File browser
+file_browser = "nautilus"
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -65,18 +67,18 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.floating,
+    --awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    --awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -86,7 +88,7 @@ tag_name_table = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag(tag_name_table, s, layouts[2])
+    tags[s] = awful.tag(tag_name_table, s, awful.layout.suit.max)
 end
 -- }}}
 
@@ -94,11 +96,11 @@ end
 tag_icon_path_substitution_string = os.getenv("HOME") .. "/.config/awesome/media/tags/%s.png"
 tag_mean_name_table = {
 	"talk",
-	"avangard/site",
-	"culturalforumspb/site",
+	"uzevezu/site",
+	"traffic/vichy",
 	"ilim/site",
-	"komzdrav/site",
-	"spbchannel/site",
+	"default",
+	"default",
 	"default",
 	"default",
 	"default",
@@ -274,6 +276,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     awful.key({ modkey, "Shift", "Control" }, "l",     function () awful.util.spawn(screensaver_lock) end),
     awful.key({ modkey,           }, "b",     function () awful.util.spawn(browser) end),
+    awful.key({ modkey, "Shift"   }, "f",     function () awful.util.spawn(file_browser) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
@@ -428,7 +431,7 @@ function run_once(prg,arg_string,pname,screen)
 end
 
 run_once("$HOME/venv/bin/supervisord -c $HOME/etc/supervisor/supervisord.conf")
-run_once(screensaver_daemon)
+-- run_once(screensaver_daemon)
 run_once(mail)
 run_once('gxneur')
 -- }}}
