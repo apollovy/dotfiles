@@ -35,8 +35,25 @@ set path+=templates/,apps/*/templates/,../venv/lib/python2.7/site-packages/*/tem
 " Enable handling of local .vimrc files
 set exrc
 
-" various
+" Turn line numbers on
 set number
+" Always axpand tabs into spaces
+set expandtab
+" Size of a hard tabstop
+set tabstop=4
+" Size of an "indent"
+set shiftwidth=4
+" A combination of spaces and tabs are used to simulate tab stops at a width
+" other than the (hard)tabstop
+set softtabstop=4
+" Fold equal indents
+set foldmethod=indent
+" Reserve 4 columns for viewing fold borders
+set foldcolumn=4
+" Set color scheme
+colorscheme elflord
+" Turn mouse on
+set mouse=a
 
 " Map window between tab movement
 nnoremap <C-w>tn :call MoveToNextTab()<CR>
