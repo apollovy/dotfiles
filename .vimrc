@@ -54,6 +54,16 @@ set foldcolumn=4
 colorscheme elflord
 " Turn mouse on
 set mouse=a
+" Show invisible symbols
+set listchars=eol:¶,tab:»\ ,nbsp:ꔹ
+set list
+
+function ReplaceWhitespaceWithCustomChar(char)
+    exec 'syn match WhiteSpace / / containedin=ALL conceal cchar=' . a:char
+    setl conceallevel=2 concealcursor=nvi
+endfunction
+
+autocmd BufNewFile,BufReadPost * :call ReplaceWhitespaceWithCustomChar('∙')
 
 " Map window between tab movement
 nnoremap <C-w>tn :call MoveToNextTab()<CR>
