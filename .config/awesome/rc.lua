@@ -99,7 +99,7 @@ tag_mean_name_table = {
 	"uzevezu/site",
 	"traffic/vichy",
 	"ilim/site",
-	"default",
+	"traffic/idealia",
 	"default",
 	"default",
 	"default",
