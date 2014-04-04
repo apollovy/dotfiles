@@ -1,3 +1,8 @@
+" " powerline
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
+
 " Pathogen load
 filetype off
 
@@ -15,7 +20,7 @@ set smartcase
 " pymode
 let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe', 'pep257']
 let g:pymode_lint_unmodified = 1
-let g:pymode_lint_ignore = ""
+let g:pymode_lint_ignore = "I"
 
 " Format Redmine message
 map <F5>	kdkkJi:^cwFix
@@ -58,13 +63,16 @@ set mouse=a
 set listchars=eol:¶,tab:»\ ,nbsp:ꔹ
 set list
 
-function ReplaceWhitespaceWithCustomChar(char)
-    exec 'syn match WhiteSpace / / containedin=ALL conceal cchar=' . a:char
-    setl conceallevel=2 concealcursor=nvi
-endfunction
-
-autocmd BufNewFile,BufReadPost * :call ReplaceWhitespaceWithCustomChar('∙')
+" function ReplaceWhitespaceWithCustomChar(char)
+"     exec 'syn match WhiteSpace / / containedin=ALL conceal cchar=' . a:char
+"     setl conceallevel=2 concealcursor=
+" endfunction
+" 
+" autocmd BufNewFile,BufReadPost * :call ReplaceWhitespaceWithCustomChar('∙')
 
 " Map window between tab movement
 nnoremap <C-w>tn :call MoveToNextTab()<CR>
 nnoremap <C-w>tp :call MoveToPrevTab()<CR>
+
+" Highlight left margin column
+set colorcolumn=80
