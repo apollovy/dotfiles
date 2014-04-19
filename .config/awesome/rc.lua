@@ -103,7 +103,7 @@ tag_mean_name_table = {
 	"kotelok/clash",
 	"default",
 	"default",
-	"default",
+	"entertainment",
 }
 for s = 1, screen.count() do
     for k, v in pairs(tag_name_table) do
