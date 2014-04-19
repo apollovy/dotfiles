@@ -433,5 +433,6 @@ end
 run_once("$HOME/venv/bin/supervisord -c $HOME/etc/supervisor/supervisord.conf")
 -- run_once(screensaver_daemon)
 run_once(mail)
+run_once('gnome-settings-daemon')
 run_once('gxneur')
 -- }}}
