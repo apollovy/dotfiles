@@ -100,7 +100,7 @@ tag_mean_name_table = {
 	"traffic/vichy",
 	"ilim/site",
 	"traffic/idealia",
-	"default",
+	"kotelok/clash",
 	"default",
 	"default",
 	"default",
