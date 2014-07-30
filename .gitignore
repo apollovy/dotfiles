@@ -4,6 +4,7 @@
 !/.screen/
 !/.bash/
 !/.ssh/config
+!/.pip/pip.conf
 
 # vim
 !/.vimrc
