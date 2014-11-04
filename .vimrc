@@ -15,6 +15,7 @@ syntax on
 " Search-related settings
 set hlsearch
 set incsearch
+set ignorecase
 set smartcase
 
 " pymode
@@ -45,16 +46,16 @@ set number
 " Always axpand tabs into spaces
 set expandtab
 " Size of a hard tabstop
-set tabstop=4
+set tabstop=2
 " Size of an "indent"
-set shiftwidth=4
+set shiftwidth=2
 " A combination of spaces and tabs are used to simulate tab stops at a width
 " other than the (hard)tabstop
-set softtabstop=4
+set softtabstop=2
 " Fold equal indents
 set foldmethod=indent
 " Reserve 4 columns for viewing fold borders
-set foldcolumn=4
+set foldcolumn=2
 " Set color scheme
 colorscheme elflord
 " Turn mouse on
@@ -76,3 +77,6 @@ nnoremap <C-w>tp :call MoveToPrevTab()<CR>
 
 " Highlight left margin column
 set colorcolumn=80
+
+" Copy current buffer path to unnamed register
+:nmap cp :let @" = expand("%")
