@@ -10,8 +10,8 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule ".vim/bundle/taglist"]
-	path = .vim/bundle/taglist
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
 	url = https://github.com/emnh/taglist.vim.git
 [submodule ".vim/bundle/ultisnips"]
 	path = .vim/bundle/ultisnips
