@@ -34,7 +34,7 @@
 	url = https://github.com/jmcantrell/vim-virtualenv
 [submodule ".vim/bundle/ropevim"]
 	path = .vim/bundle/ropevim
-	url = git@github.com:apollovy/ropevim.git
+	url = https://github.com/python-rope/ropevim.git
 
 # Ruby
 [submodule ".vim/bundle/vim-bundler"]
