@@ -197,5 +197,14 @@ function sync {
 function mp32aac {
 	export _src=~/Music/src _target=~/Music/convert
 	find ${_src} -type d -mindepth 1 | parallel '_dir={}; mkdir ${_target}/${_dir##${_src}/}'
-	find ${_src} -type f -name '*.m[p4][3a]' | parallel '_file={}; _target_file=${_target}/${${_file%.*}##${_src}/}.m4a; ffmpeg -i "$_file" -c:a libfdk_aac -b:a 128K -y -nostdin -vn $_target_file; aacgain -r -c $_target_file'
+	find ${_src} -type f \( -name '*.mp3' -o -name '*.m4a' -o -name '*.flac' \) | parallel '_file={}; _target_file=${_target}/${${_file%.*}##${_src}/}.m4a; ffmpeg -i "$_file" -c:a libfdk_aac -b:a 128K -y -nostdin -vn $_target_file; aacgain -r -c $_target_file'
+}
+function vk_video_dl {
+	headers="User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A5376e"
+	url=${1%/*}
+	filename=${1##*/}
+
+	for ts_file in `curl -H "$headers" "${url}/${filename}.mp4.m3u8" 2> /dev/null | grep -v '#'`; do
+		curl -H "$headers" "${url}/${ts_file%}" >> ${filename}.ts
+	done
 }
