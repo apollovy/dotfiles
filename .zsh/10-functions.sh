@@ -208,3 +208,9 @@ function vk_video_dl {
 		curl -H "$headers" "${url}/${ts_file%}" >> ${filename}.ts
 	done
 }
+
+function oes {
+	print '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+	reset
+	openerp-server -c ../server.rc
+}
