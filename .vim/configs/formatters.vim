@@ -23,3 +23,6 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " Format XML files
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" Guess it's somehow related to zenmoney's dump
+map <F9> jJs	

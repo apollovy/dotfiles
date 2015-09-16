@@ -1,3 +1,3 @@
 " Netrw configs
 
-let g:netrw_browse_split=1
+let g:netrw_browse_split=3

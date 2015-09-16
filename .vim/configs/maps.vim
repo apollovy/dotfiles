@@ -9,3 +9,6 @@ nmap cp :let @" = expand("%")
 
 cmap Qa qa
 cmap QA qa
+
+" Silence current pylint error
+nnoremap <C-k> A  # pylint:disable=jf[lyt]kp:lne<CR>
