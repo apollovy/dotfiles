@@ -48,3 +48,6 @@
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule ".vim/bundle/vim-plugin-random-colorscheme-picker"]
+	path = /Users/apollov/.vim/bundle/vim-plugin-random-colorscheme-picker
+	url = https://github.com/pokowaka/vim-plugin-random-colorscheme-picker.git
