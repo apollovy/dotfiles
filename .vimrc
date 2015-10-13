@@ -16,5 +16,6 @@ source ~/.vim/configs/syntastic.vim
 source ~/.vim/configs/taglist.vim
 source ~/.vim/configs/ultisnips.vim
 source ~/.vim/configs/ycm.vim
+source ~/.vim/configs/virtualenv.vim
 
 source ~/.vim/configs/django.vim

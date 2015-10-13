@@ -22,6 +22,8 @@ set statusline+=%#identifier#
 set statusline+=%r
 set statusline+=%*
 
+" virtualenv
+set statusline+=%{virtualenv#statusline()}
 "modified flag
 set statusline+=%#identifier#
 set statusline+=%m
