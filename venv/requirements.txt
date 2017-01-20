@@ -1,4 +1,0 @@
-pylint
-radon
-selenium
-supervisor
