@@ -38,13 +38,6 @@ set mouse=a
 set listchars=eol:¶,tab:»\ ,nbsp:ꔹ
 set list
 
-" function ReplaceWhitespaceWithCustomChar(char)
-"     exec 'syn match WhiteSpace / / containedin=ALL conceal cchar=' . a:char
-"     setl conceallevel=2 concealcursor=
-" endfunction
-" 
-" autocmd BufNewFile,BufReadPost * :call ReplaceWhitespaceWithCustomChar('∙')
-
 " Highlight left margin column
 set colorcolumn=80
 set textwidth=79
